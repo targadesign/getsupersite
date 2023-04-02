@@ -111,19 +111,21 @@ $(".is-submit").click(function (event) {
   let allFieldsFilled = true;
   let slidesWithMissingData = [];
 
-  // Loop through all visible form fields and check if they are filled
-  $(".slide input:visible, .slide textarea:visible").each(function () {
-    const input = $(this);
-    const slideNumber = input.closest(".slide").attr("data-slide-number");
+// Loop through all visible form fields and check if they are filled
+$(".slide input:visible, .slide textarea:visible").each(function () {
+  const input = $(this);
+  const slideNumber = input.closest(".slide").attr("data-slide-number");
 
-    if (!input.val().trim()) {
-      allFieldsFilled = false;
+  if (input.attr("type") === "file" && input[0].files.length === 0) {
+    allFieldsFilled = false;
+  } else if (!input.val().trim()) {
+    allFieldsFilled = false;
+  }
 
-      if (!slidesWithMissingData.includes(slideNumber)) {
-        slidesWithMissingData.push(slideNumber);
-      }
-    }
-  });
+  if (!allFieldsFilled && !slidesWithMissingData.includes(slideNumber)) {
+    slidesWithMissingData.push(slideNumber);
+  }
+});
 
   // Reset all validation alerts
   $(".form-sidepane_validation-alert").hide();
