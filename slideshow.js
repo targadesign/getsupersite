@@ -139,7 +139,7 @@ $(".is-submit").click(function (event) {
   if (!allFieldsFilled) {
     $(".modal-submit-alert").fadeIn();
   } else {
-    // Submit the form using Webflow's native submission
-    $("#website-lead").submit();
+    // Trigger the native form submission in Webflow
+    $(this).closest("form").submit();
   }
 });
