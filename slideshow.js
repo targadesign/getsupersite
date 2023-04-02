@@ -104,41 +104,42 @@ $(document).ready(function() {
     $slideCounterCurrent.text(currentSlide);
   });
   
-  // Add event listener for the submit button
-  $(".is-submit").click(function (event) {
-    let allFieldsFilled = true;
-    let slidesWithMissingData = [];
+// Add event listener for the submit button
+$(".is-submit").click(function (event) {
+  event.preventDefault();
 
-    // Loop through all visible form fields and check if they are filled
-    $(".slide input:visible, .slide textarea:visible").each(function () {
-      const input = $(this);
-      const slideNumber = input.closest(".slide").attr("data-slide-number");
+  let allFieldsFilled = true;
+  let slidesWithMissingData = [];
 
-      if (!input.val().trim()) {
-        allFieldsFilled = false;
+  // Loop through all visible form fields and check if they are filled
+  $(".slide input:visible, .slide textarea:visible").each(function () {
+    const input = $(this);
+    const slideNumber = input.closest(".slide").attr("data-slide-number");
 
-        if (!slidesWithMissingData.includes(slideNumber)) {
-          slidesWithMissingData.push(slideNumber);
-        }
+    if (!input.val().trim()) {
+      allFieldsFilled = false;
+
+      if (!slidesWithMissingData.includes(slideNumber)) {
+        slidesWithMissingData.push(slideNumber);
       }
-    });
-
-    // Reset all validation alerts
-$(".form-sidepane_validation-alert").hide();
-
-// Show validation alert for slides with missing data
-slidesWithMissingData.forEach((slideNumber) => {
-  $(`.slide-btn[data-slide-number="${slideNumber}"]`)
-    .find(".form-sidepane_validation-alert")
-    .show();
-});
-
-    // Show modal dialog if not all fields are filled
-    if (!allFieldsFilled) {
-      event.preventDefault();
-      $(".modal-submit-alert").fadeIn();
-    } else {
-      // The form will be submitted natively by Webflow
     }
   });
+
+  // Reset all validation alerts
+  $(".form-sidepane_validation-alert").hide();
+
+  // Show validation alert for slides with missing data
+  slidesWithMissingData.forEach((slideNumber) => {
+    $(`.slide-btn[data-slide-number="${slideNumber}"]`)
+      .find(".form-sidepane_validation-alert")
+      .show();
+  });
+
+  // Show modal dialog if not all fields are filled
+  if (!allFieldsFilled) {
+    $(".modal-submit-alert").fadeIn();
+  } else {
+    // Submit the form using Webflow's native submission
+    $("#website-lead").submit();
+  }
 });
