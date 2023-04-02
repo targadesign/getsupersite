@@ -123,10 +123,14 @@ $(document).ready(function() {
       }
     });
 
-    // Show validation alert for slides with missing data
+    // Reset all validation alerts
 $(".form-sidepane_validation-alert").hide();
+
+// Show validation alert for slides with missing data
 slidesWithMissingData.forEach((slideNumber) => {
-  $(`.slide-btn[data-slide-number="${slideNumber}"] .form-sidepane_validation-alert`).show();
+  $(`.slide-btn[data-slide-number="${slideNumber}"]`)
+    .find(".form-sidepane_validation-alert")
+    .show();
 });
 
     // Show modal dialog if not all fields are filled
