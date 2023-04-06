@@ -146,4 +146,3 @@ $(".slide input:visible, .slide textarea:visible").each(function () {
   }
 });
 });
-});
