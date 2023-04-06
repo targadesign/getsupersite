@@ -145,3 +145,5 @@ $(".slide input:visible, .slide textarea:visible").each(function () {
     $(this).closest("form").submit();
   }
 });
+});
+});
