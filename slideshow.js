@@ -144,4 +144,5 @@ $(".slide input:visible, .slide textarea:visible").each(function () {
     // Trigger the native form submission in Webflow
     $(this).closest("form").submit();
   }
-});
+ });
+})
