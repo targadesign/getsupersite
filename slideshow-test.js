@@ -103,3 +103,4 @@ $(document).ready(function() {
     // update slide counter
     $slideCounterCurrent.text(currentSlide);
   });
+})
