@@ -1,5 +1,5 @@
 const form = document.getElementById("website-lead");
-const modal = document.getElementById("modal");
+const modal = document.getElementById("form-alert-modal");
 
 function validateForm() {
   let isValid = true;
