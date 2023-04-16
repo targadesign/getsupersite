@@ -5,11 +5,16 @@ function validateForm() {
   let isValid = true;
   const slideButtons = document.querySelectorAll('.slide-btn');
   const slides = document.querySelectorAll('.slide');
+  console.log('Slide buttons:', slideButtons); // Debugging line
+  console.log('Slides:', slides); // Debugging line
+
   slideButtons.forEach((button, index) => {
     const alertIcon = button.querySelector('.form-sidepane_validation-alert');
     alertIcon.classList.remove('is-visible');
     const slide = slides[index];
     const requiredInputs = slide.querySelectorAll('input[required], textarea[required], select[required]');
+    console.log('Required inputs:', requiredInputs); // Debugging line
+
     let hasEmptyRequiredInput = false;
     requiredInputs.forEach((input) => {
       const alertMessage = input.parentNode.querySelector('.form_input-validation');
